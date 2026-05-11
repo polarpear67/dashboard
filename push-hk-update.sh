@@ -22,7 +22,7 @@ fs.writeFileSync('data-hk/news-hk.json', JSON.stringify(data, null, 2));
 console.log('Merged HK news');
 "
 
-# Generate the static HK daily page
+# Generate the static HK daily page - English UI, Chinese news content
 node -e "
 const fs = require('fs');
 const path = require('path');
@@ -33,11 +33,11 @@ const items = data[date];
 if (!items || items.length === 0) { console.error('No news'); process.exit(1); }
 
 const page = \`<!DOCTYPE html>
-<html lang=\"zh-HK\">
+<html lang=\"en\">
 <head>
     <meta charset=\"UTF-8\">
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-    <title>\${date} — 香港新聞</title>
+    <title>\${date} — Hong Kong News | Polar Dashboard</title>
     <base href=\"/ai-it-daily/\">
     <link rel=\"stylesheet\" href=\"../../style.css\">
     <link rel=\"stylesheet\" href=\"../hk-style.css\">
@@ -45,12 +45,12 @@ const page = \`<!DOCTYPE html>
 <body>
     <header>
         <div class=\"header-content\">
-            <h1>🇭🇰 香港本地新聞</h1>
+            <h1>🇭🇰 Hong Kong Local News</h1>
             <p class=\"subtitle\">\${date}</p>
             <nav>
-                <a href=\"../..\" class=\"nav-dashboard\">🏠 主頁</a>
-                <a href=\"../\">香港新聞</a>
-                <a href=\"../archive-hk/\">歷史記錄</a>
+                <a href=\"../..\" class=\"nav-dashboard\">🏠 Dashboard</a>
+                <a href=\"../\">HK News</a>
+                <a href=\"../archive-hk/\">Archive</a>
             </nav>
         </div>
     </header>
@@ -61,14 +61,14 @@ const page = \`<!DOCTYPE html>
         <div class=\"news-card\">
             <div class=\"news-rank\">\${i + 1}</div>
             <h2>\${item.title}</h2>
-            <div class=\"news-source\">\${item.source || '來源不詳'}</div>
+            <div class=\"news-source\">\${item.source || 'Unknown source'}</div>
             <div class=\"news-summary\">\${item.summary}</div>
-            <a class=\"news-link\" href=\"\${item.url}\" target=\"_blank\" rel=\"noopener\">閱讀全文 →</a>
+            <a class=\"news-link\" href=\"\${item.url}\" target=\"_blank\" rel=\"noopener\">Read full article →</a>
         </div>\`).join('')}
     </main>
 
     <footer>
-        <p>由 Polar 🐻‍❄️ 為你準備 | <a href=\"https://github.com/polarpear67/ai-it-daily\">GitHub</a></p>
+        <p>Curated by Polar 🐻‍❄️ for Donald | <a href=\"https://github.com/polarpear67/ai-it-daily\">GitHub</a></p>
     </footer>
 </body>
 </html>\`;

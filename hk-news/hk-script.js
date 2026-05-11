@@ -15,7 +15,7 @@ async function loadHKNews() {
         const containers = ['hk-news-list', 'hk-archive-list'];
         containers.forEach(id => {
             const el = document.getElementById(id);
-            if (el) el.innerHTML = '<div class="loading">暫時未有新聞 — 明早 8 點再來看看！</div>';
+            if (el) el.innerHTML = '<div class="loading">No news yet — check back tomorrow at 8 AM!</div>';
         });
     }
 }
@@ -25,7 +25,7 @@ function renderTodayHK(dates, data) {
     const today = dates[0];
     
     if (!today) {
-        container.innerHTML = '<div class="loading">暫時未有新聞 — 明早 8 點再來看看！</div>';
+        container.innerHTML = '<div class="loading">No news yet — check back tomorrow at 8 AM!</div>';
         return;
     }
     
@@ -33,7 +33,7 @@ function renderTodayHK(dates, data) {
     
     const items = data[today];
     if (!items || items.length === 0) {
-        container.innerHTML = '<div class="loading">今日暫無新聞。</div>';
+        container.innerHTML = '<div class="loading">No news available for today.</div>';
         return;
     }
     
@@ -41,9 +41,9 @@ function renderTodayHK(dates, data) {
         <div class="news-card">
             <div class="news-rank">${i + 1}</div>
             <h2>${item.title}</h2>
-            <div class="news-source">${item.source || '來源不詳'}</div>
+            <div class="news-source">${item.source || 'Unknown source'}</div>
             <div class="news-summary">${item.summary}</div>
-            <a class="news-link" href="${item.url}" target="_blank" rel="noopener">閱讀全文 →</a>
+            <a class="news-link" href="${item.url}" target="_blank" rel="noopener">Read full article →</a>
         </div>
     `).join('');
 }
@@ -52,7 +52,7 @@ function renderArchiveHK(dates, data) {
     const container = document.getElementById('hk-archive-list');
     
     if (dates.length === 0) {
-        container.innerHTML = '<div class="loading">暫無歷史記錄。</div>';
+        container.innerHTML = '<div class="loading">No archives yet.</div>';
         return;
     }
     
@@ -61,7 +61,7 @@ function renderArchiveHK(dates, data) {
         return `
             <div class="archive-item">
                 <a href="hk-news/news-hk/${date}.html">${date}</a>
-                <span class="archive-count">${count} 則新聞</span>
+                <span class="archive-count">${count} stories</span>
             </div>
         `;
     }).join('');
