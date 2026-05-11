@@ -22,7 +22,7 @@ fs.writeFileSync('data-hk/news-hk.json', JSON.stringify(data, null, 2));
 console.log('Merged HK news');
 "
 
-# Generate the static HK daily page - English UI, Chinese news content
+# Generate the static HK daily page
 node -e "
 const fs = require('fs');
 const path = require('path');
@@ -31,6 +31,16 @@ const date = '$DATE';
 const data = JSON.parse(fs.readFileSync('data-hk/news-hk.json', 'utf8'));
 const items = data[date];
 if (!items || items.length === 0) { console.error('No news'); process.exit(1); }
+
+const ranks = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣'];
+const cards = items.map((item, i) => \`
+        <div class=\"news-card\">
+            <div class=\"news-rank\">\${ranks[i] || (i + 1)}</div>
+            <h2>\${item.title}</h2>
+            <div class=\"news-source\">\${item.source || 'Unknown source'}</div>
+            <div class=\"news-summary\">\${item.summary}</div>
+            <a class=\"news-link\" href=\"\${item.url}\" target=\"_blank\" rel=\"noopener\">Read full article →</a>
+        </div>\`).join('');
 
 const page = \`<!DOCTYPE html>
 <html lang=\"en\">
@@ -46,9 +56,9 @@ const page = \`<!DOCTYPE html>
     <header>
         <div class=\"header-content\">
             <h1>🇭🇰 Hong Kong Local News</h1>
-            <p class=\"subtitle\">\${date}</p>
+            <p class=\"subtitle\">Top 5 headlines — \${date}</p>
             <nav>
-                <a href=\"../..\" class=\"nav-dashboard\">🏠 Dashboard</a>
+                <a href=\"../..\">Dashboard</a>
                 <a href=\"../\">HK News</a>
                 <a href=\"../archive-hk/\">Archive</a>
             </nav>
@@ -56,19 +66,12 @@ const page = \`<!DOCTYPE html>
     </header>
 
     <main>
-        <div class=\"date-badge\">\${date} 🇭🇰</div>
-        \${items.map((item, i) => \`
-        <div class=\"news-card\">
-            <div class=\"news-rank\">\${i + 1}</div>
-            <h2>\${item.title}</h2>
-            <div class=\"news-source\">\${item.source || 'Unknown source'}</div>
-            <div class=\"news-summary\">\${item.summary}</div>
-            <a class=\"news-link\" href=\"\${item.url}\" target=\"_blank\" rel=\"noopener\">Read full article →</a>
-        </div>\`).join('')}
+        <div class=\"date-badge\">📅 \${date}</div>
+        \${cards}
     </main>
 
     <footer>
-        <p>Curated by Polar 🐻‍❄️ for Donald | <a href=\"https://github.com/polarpear67/ai-it-daily\">GitHub</a></p>
+        <p>Curated by Polar 🐻‍❄️ for Donald | <a href=\"https://github.com/polarpear67/dashboard\">GitHub</a></p>
     </footer>
 </body>
 </html>\`;
@@ -76,7 +79,7 @@ const page = \`<!DOCTYPE html>
 const dir = 'hk-news/news-hk';
 if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 fs.writeFileSync(path.join(dir, date + '.html'), page);
-console.log('Generated hk-news/news-hk/' + date + '.html');
+console.log('✅ Generated hk-news/news-hk/' + date + '.html');
 "
 
 # Configure git
