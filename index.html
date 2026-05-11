@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Polar Dashboard 🐻‍❄️</title>
     <base href="/dashboard/">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="/dashboard/style.css">
+    <link rel="stylesheet" href="/dashboard/dashboard.css">
 </head>
 <body>
     <header class="dashboard-header">
@@ -14,16 +14,16 @@
             <h1>🐻‍❄️ Polar Dashboard</h1>
             <p class="subtitle">Your personal info hub — AI & IT News · Hong Kong News · More coming</p>
             <nav>
-                <a href="." class="active">Dashboard</a>
-                <a href="ai-it/">AI & IT Daily</a>
-                <a href="hk-news/">HK News</a>
+                <a href="/dashboard/" class="active">Dashboard</a>
+                <a href="/dashboard/ai-it/">AI & IT Daily</a>
+                <a href="/dashboard/hk-news/">HK News</a>
             </nav>
         </div>
     </header>
 
     <main>
         <div class="dashboard-grid">
-            <a href="ai-it/" class="dash-card" id="card-ai">
+            <a href="/dashboard/ai-it/" class="dash-card" id="card-ai">
                 <div class="dash-card-icon">🤖</div>
                 <div class="dash-card-body">
                     <h3>AI & IT Daily</h3>
@@ -32,7 +32,7 @@
                 </div>
             </a>
 
-            <a href="hk-news/" class="dash-card" id="card-hk">
+            <a href="/dashboard/hk-news/" class="dash-card" id="card-hk">
                 <div class="dash-card-icon">🇭🇰</div>
                 <div class="dash-card-body">
                     <h3>Hong Kong News</h3>
@@ -41,7 +41,7 @@
                 </div>
             </a>
 
-            <div class="dash-card dash-card-placeholder" id="card-tasks">
+            <div class="dash-card dash-card-placeholder">
                 <div class="dash-card-icon">📋</div>
                 <div class="dash-card-body">
                     <h3>Task Manager <span class="coming-soon-badge">Coming soon</span></h3>
@@ -50,7 +50,7 @@
                 </div>
             </div>
 
-            <div class="dash-card dash-card-placeholder" id="card-projects">
+            <div class="dash-card dash-card-placeholder">
                 <div class="dash-card-icon">📊</div>
                 <div class="dash-card-body">
                     <h3>Project Manager <span class="coming-soon-badge">Coming soon</span></h3>
@@ -59,7 +59,7 @@
                 </div>
             </div>
 
-            <div class="dash-card dash-card-placeholder" id="card-notes">
+            <div class="dash-card dash-card-placeholder">
                 <div class="dash-card-icon">📝</div>
                 <div class="dash-card-body">
                     <h3>Quick Notes <span class="coming-soon-badge">Coming soon</span></h3>
@@ -68,7 +68,7 @@
                 </div>
             </div>
 
-            <div class="dash-card dash-card-placeholder" id="card-weather">
+            <div class="dash-card dash-card-placeholder">
                 <div class="dash-card-icon">🌤️</div>
                 <div class="dash-card-body">
                     <h3>Weather <span class="coming-soon-badge">Coming soon</span></h3>
@@ -90,11 +90,11 @@
         <p>Curated by Polar 🐻‍❄️ for Donald</p>
         <p class="footer-links">
             <a href="https://github.com/polarpear67/dashboard">GitHub</a> · 
-            <a href="archive/">News Archive</a> · 
-            <a href="hk-news/archive-hk/">HK News Archive</a>
+            <a href="/dashboard/archive/">News Archive</a> · 
+            <a href="/dashboard/hk-news/archive-hk/">HK News Archive</a>
         </p>
     </footer>
 
-    <script src="dashboard.js"></script>
+    <script src="/dashboard/dashboard.js"></script>
 </body>
 </html>
