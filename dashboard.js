@@ -22,7 +22,7 @@ async function loadDashboard() {
         
         if (aiDates.length > 0) {
             metaAI.textContent = '📅 ' + aiDates[0];
-            cardAI.href = 'news/' + aiDates[0] + '.html';
+            cardAI.href = 'ai-it/' + aiDates[0] + '.html';
         } else {
             metaAI.textContent = '暫無資料';
         }
@@ -43,7 +43,7 @@ async function loadDashboard() {
                     date,
                     tag: 'AI & IT',
                     tagClass: 'tag-ai',
-                    url: 'news/' + date + '.html',
+                    url: 'ai-it/news-ai/' + date + '.html',
                     label: items[0].title.substring(0, 50) + (items[0].title.length > 50 ? '...' : '') + ' (+' + (items.length - 1) + ' more)'
                 });
             }
