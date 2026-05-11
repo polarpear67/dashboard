@@ -13,32 +13,34 @@
         <div class="header-content">
             <h1>🐻‍❄️ Polar Dashboard</h1>
             <p class="subtitle">Your personal info hub — AI & IT News · Hong Kong News · More coming</p>
+            <nav>
+                <a href="." class="active">Dashboard</a>
+                <a href="ai-it/">AI & IT Daily</a>
+                <a href="hk-news/">HK News</a>
+            </nav>
         </div>
     </header>
 
     <main>
         <div class="dashboard-grid">
-            <!-- AI/IT News Card -->
             <a href="ai-it/" class="dash-card" id="card-ai">
                 <div class="dash-card-icon">🤖</div>
                 <div class="dash-card-body">
                     <h3>AI & IT Daily</h3>
                     <p class="dash-card-desc">Top 5 global AI & tech headlines</p>
-                    <span class="dash-card-meta" id="meta-ai">Today updated</span>
+                    <span class="dash-card-meta" id="meta-ai">Loading...</span>
                 </div>
             </a>
 
-            <!-- HK News Card -->
             <a href="hk-news/" class="dash-card" id="card-hk">
                 <div class="dash-card-icon">🇭🇰</div>
                 <div class="dash-card-body">
                     <h3>Hong Kong News</h3>
                     <p class="dash-card-desc">Top 5 HK local headlines (Traditional Chinese)</p>
-                    <span class="dash-card-meta" id="meta-hk">Today updated</span>
+                    <span class="dash-card-meta" id="meta-hk">Loading...</span>
                 </div>
             </a>
 
-            <!-- Placeholder: Task Manager -->
             <div class="dash-card dash-card-placeholder" id="card-tasks">
                 <div class="dash-card-icon">📋</div>
                 <div class="dash-card-body">
@@ -48,7 +50,6 @@
                 </div>
             </div>
 
-            <!-- Placeholder: Project Manager -->
             <div class="dash-card dash-card-placeholder" id="card-projects">
                 <div class="dash-card-icon">📊</div>
                 <div class="dash-card-body">
@@ -58,7 +59,6 @@
                 </div>
             </div>
 
-            <!-- Placeholder: Notes -->
             <div class="dash-card dash-card-placeholder" id="card-notes">
                 <div class="dash-card-icon">📝</div>
                 <div class="dash-card-body">
@@ -68,7 +68,6 @@
                 </div>
             </div>
 
-            <!-- Placeholder: Weather -->
             <div class="dash-card dash-card-placeholder" id="card-weather">
                 <div class="dash-card-icon">🌤️</div>
                 <div class="dash-card-body">

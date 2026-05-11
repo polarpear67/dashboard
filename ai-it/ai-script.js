@@ -1,5 +1,6 @@
 async function loadAINews() {
     try {
+        // Paths are relative to <base href="/dashboard/"> so data/ = /dashboard/data/
         const resp = await fetch('data/news.json');
         const data = await resp.json();
         

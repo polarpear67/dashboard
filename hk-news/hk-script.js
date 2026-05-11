@@ -1,5 +1,6 @@
 async function loadHKNews() {
     try {
+        // Paths are relative to <base href="/dashboard/"> so data-hk/ = /dashboard/data-hk/
         const resp = await fetch('data-hk/news-hk.json');
         const data = await resp.json();
         
@@ -20,6 +21,8 @@ async function loadHKNews() {
     }
 }
 
+const rankEmojis = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣'];
+
 function renderTodayHK(dates, data) {
     const container = document.getElementById('hk-news-list');
     const today = dates[0];
@@ -29,7 +32,7 @@ function renderTodayHK(dates, data) {
         return;
     }
     
-    document.getElementById('current-date').textContent = today + ' 🇭🇰';
+    document.getElementById('current-date').innerHTML = '📅 ' + today;
     
     const items = data[today];
     if (!items || items.length === 0) {
@@ -39,7 +42,7 @@ function renderTodayHK(dates, data) {
     
     container.innerHTML = items.map((item, i) => `
         <div class="news-card">
-            <div class="news-rank">${i + 1}</div>
+            <div class="news-rank">${rankEmojis[i] || (i + 1)}</div>
             <h2>${item.title}</h2>
             <div class="news-source">${item.source || 'Unknown source'}</div>
             <div class="news-summary">${item.summary}</div>

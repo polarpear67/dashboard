@@ -2,7 +2,6 @@ async function loadDashboard() {
     const recentList = document.getElementById('recent-list');
     
     try {
-        // Load both news data sources
         const [aiResp, hkResp] = await Promise.all([
             fetch('data/news.json'),
             fetch('data-hk/news-hk.json')
@@ -11,7 +10,6 @@ async function loadDashboard() {
         const aiData = await aiResp.json();
         const hkData = await hkResp.json();
         
-        // Update meta info on cards
         const aiDates = Object.keys(aiData).sort().reverse();
         const hkDates = Object.keys(hkData).sort().reverse();
         
@@ -22,18 +20,17 @@ async function loadDashboard() {
         
         if (aiDates.length > 0) {
             metaAI.textContent = '📅 ' + aiDates[0];
-            cardAI.href = 'ai-it/' + aiDates[0] + '.html';
+            cardAI.href = 'ai-it/';
         } else {
-            metaAI.textContent = '暫無資料';
+            metaAI.textContent = 'No data yet';
         }
         
         if (hkDates.length > 0) {
             metaHK.textContent = '📅 ' + hkDates[0];
         } else {
-            metaHK.textContent = '暫無資料';
+            metaHK.textContent = 'No data yet';
         }
         
-        // Build recent updates timeline
         const updates = [];
         
         aiDates.forEach(date => {
@@ -44,7 +41,7 @@ async function loadDashboard() {
                     tag: 'AI & IT',
                     tagClass: 'tag-ai',
                     url: 'ai-it/news-ai/' + date + '.html',
-                    label: items[0].title.substring(0, 50) + (items[0].title.length > 50 ? '...' : '') + ' (+' + (items.length - 1) + ' more)'
+                    label: items[0].title.substring(0, 55) + (items[0].title.length > 55 ? '...' : '') + ' (+' + (items.length - 1) + ' more)'
                 });
             }
         });
@@ -54,10 +51,10 @@ async function loadDashboard() {
             if (items && items.length > 0) {
                 updates.push({
                     date,
-                    tag: '🇭🇰 香港',
+                    tag: '🇭🇰 Hong Kong',
                     tagClass: 'tag-hk',
                     url: 'hk-news/news-hk/' + date + '.html',
-                    label: items[0].title.substring(0, 50) + (items[0].title.length > 50 ? '...' : '') + ' (+' + (items.length - 1) + ' more)'
+                    label: items[0].title.substring(0, 55) + (items[0].title.length > 55 ? '...' : '') + ' (+' + (items.length - 1) + ' more)'
                 });
             }
         });
@@ -65,7 +62,7 @@ async function loadDashboard() {
         updates.sort((a, b) => b.date.localeCompare(a.date));
         
         if (updates.length === 0) {
-            recentList.innerHTML = '<div class="loading">暫無更新記錄。</div>';
+            recentList.innerHTML = '<div class="loading">No updates yet.</div>';
             return;
         }
         
@@ -80,7 +77,7 @@ async function loadDashboard() {
         `).join('');
         
     } catch (e) {
-        recentList.innerHTML = '<div class="loading">無法載入更新記錄。</div>';
+        recentList.innerHTML = '<div class="loading">Unable to load updates.</div>';
     }
 }
 
