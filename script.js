@@ -1,7 +1,7 @@
 // Load news data and render
 async function loadNews() {
     try {
-        const resp = await fetch('/data/news.json');
+        const resp = await fetch('data/news.json');
         const data = await resp.json();
         
         // Sort by date descending
@@ -62,25 +62,11 @@ function renderArchive(dates, data) {
         const count = data[date] ? data[date].length : 0;
         return `
             <div class="archive-item">
-                <a href="/news/${date}.html">${date}</a>
+                <a href="news/${date}.html">${date}</a>
                 <span class="archive-count">${count} stories</span>
             </div>
         `;
     }).join('');
-}
-
-// Generate static daily page content (for server-rendered pages)
-function renderDailyPage(items, date) {
-    const rankEmojis = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣'];
-    return items.map((item, i) => `
-        <div class="news-card">
-            <div class="news-rank">${i + 1}</div>
-            <h2>${rankEmojis[i] || ''} ${item.title}</h2>
-            <div class="news-source">${item.source || 'Unknown source'}</div>
-            <div class="news-summary">${item.summary}</div>
-            <a class="news-link" href="${item.url}" target="_blank" rel="noopener">Read full article →</a>
-        </div>
-    `).join('');
 }
 
 loadNews();
